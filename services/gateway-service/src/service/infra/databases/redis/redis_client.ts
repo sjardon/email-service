@@ -19,6 +19,16 @@ export class RedisClient {
   }
 
   constructor() {
+    console.log(
+      'process.env.REDIS_HOST_CONNECTION',
+      process.env.REDIS_HOST_CONNECTION,
+      'Number(process.env.REDIS_PORT)',
+      Number(process.env.REDIS_PORT),
+      'process.env.REDIS_USERNAME',
+      process.env.REDIS_USERNAME,
+      'process.env.REDIS_PASSWORD',
+      process.env.REDIS_PASSWORD,
+    );
     const url: any = this.buildRedisUrl(
       process.env.REDIS_HOST_CONNECTION || 'redis',
       Number(process.env.REDIS_PORT),
@@ -29,7 +39,7 @@ export class RedisClient {
     this.client = redis.createClient({ url });
 
     this.client.on('error', (error: any) => {
-      console.error('Error connecting to Redis:', error);
+      console.error(`Error connecting to Redis in [${url}]:`, error);
     });
   }
 

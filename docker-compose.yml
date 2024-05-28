@@ -23,7 +23,34 @@ services:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - es_mongodb:/data/db
 
+  gateway:
+    build: 
+      context: .
+      args:
+        - PROJECT=gateway-service
+    env_file: ./services/gateway-service/.env
+    ports:
+      - ${GATEWAY_PORT}:3000
+    depends_on:
+      - redis
+  
+  email-sender:
+    build: 
+      context: .
+      args:
+        - PROJECT=email-sender-service
+    env_file: ./services/email-sender-service/.env
+    ports:
+      - ${EMAIL_SENDER_PORT}:3000
+    depends_on:
+      - redis
+      - mongo
+      
 volumes:
   es_redis:
     driver: local
   es_mongodb:
+
+networks:
+  default:
+    driver: bridge

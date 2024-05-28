@@ -3,17 +3,12 @@ config();
 import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
-// TODO: remplace to module alias
 import { setServiceRoutes } from './service/infra/api/service.routes';
 
 import { redisClient, redisPublisher } from './service/infra/dependencies';
 import { listenServiceSubscribers } from './service/infra/subscribers/service.subscribers';
 
 async function startApp() {
-  // start redis connection
-  // start listeners
-  // start routes
-
   const app = express();
 
   app.use(helmet());

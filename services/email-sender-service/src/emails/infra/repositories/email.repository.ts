@@ -3,8 +3,24 @@ import { IEmailRepository } from '../../domain/repositories/email.repository';
 
 export class EmailRepository implements IEmailRepository {
   // constructor(private readonly dbClient: MongoClient) {}
-  get(externalId: string): Promise<EmailEntity | null> {
-    throw new Error('Method not implemented.' + externalId);
+  async get(externalId: string): Promise<EmailEntity | null> {
+    const foundEmail = await EmailModel.findOne({ externalId }).exec();
+
+    if (!foundEmail) {
+      return null;
+    }
+
+    const { from, to, body, createdAt, status, _id } = foundEmail;
+
+    return new EmailEntity(
+      externalId,
+      from,
+      to,
+      body,
+      createdAt,
+      status,
+      _id.toString(),
+    );
   }
 
   async save(email: EmailEntity): Promise<EmailEntity> {

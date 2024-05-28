@@ -20,7 +20,13 @@ export class CreateEmailService implements CreateEmailUseCase {
 
   async execute(input: CreateEmailInput): Promise<EmailEntity> {
     try {
-      // Save with pending status
+      const { externalId } = input;
+
+      const foundEmail = await this.emailReposiory.get(externalId);
+
+      if (foundEmail) {
+        throw new Error('Repeated email asked for creation');
+      }
 
       const emailSent = await this.send(input);
 

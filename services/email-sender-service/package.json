@@ -1,10 +1,10 @@
 {
-  "name": "email-service",
+  "name": "email-sender-service",
   "version": "1.0.0",
   "description": "",
   "main": "dist/start.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "jest --passWithNoTests --runInBand --no-cache",
     "build": "npx tsc",
     "start:prod": "node dist/start.js",
     "start:dev": "nodemon src/start.ts"
@@ -17,11 +17,9 @@
     "dotenv": "^16.4.5",
     "express": "^4.19.2",
     "helmet": "^7.1.0",
-    "install": "^0.13.0",
     "joi": "^17.13.1",
     "mailgun.js": "^10.2.1",
     "mongoose": "^8.4.0",
-    "npm": "^10.8.0",
     "redis": "^4.6.14",
     "uuid": "^9.0.1"
   },

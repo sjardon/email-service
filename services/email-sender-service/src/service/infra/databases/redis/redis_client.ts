@@ -29,7 +29,7 @@ export class RedisClient {
     this.client = redis.createClient({ url });
 
     this.client.on('error', (error: any) => {
-      console.error('Error connecting to Redis:', error);
+      console.error(`Error connecting to Redis in [${url}]:`, error);
     });
   }
 
