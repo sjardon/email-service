@@ -1,0 +1,29 @@
+version: '3.7'
+services:
+  redis:
+    image: redis/redis-stack-server:latest
+    restart: always
+    environment:
+      REDIS_PORT: ${REDIS_PORT}
+    ports:
+      - '${REDIS_PORT}:6379'
+    volumes:
+      - es_redis:/data
+
+  mongo:
+    image: mongo
+    restart: always
+    ports:
+      - 27017:27017
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root123
+      MONGO_INITDB_DATABASE: email
+    volumes:
+      - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
+      - es_mongodb:/data/db
+
+volumes:
+  es_redis:
+    driver: local
+  es_mongodb:

@@ -1,5 +1,5 @@
 {
-  "name": "email-service",
+  "name": "email",
   "private": true,
   "scripts": {
     "build": "turbo build",
