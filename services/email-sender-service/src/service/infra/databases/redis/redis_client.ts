@@ -11,8 +11,8 @@ export class RedisClient {
     password?: string,
   ): string {
     let url = `redis://`;
-    if (username && password) {
-      url += `${encodeURIComponent(username)}:${encodeURIComponent(password)}@`;
+    if (username || password) {
+      url += `${username ? encodeURIComponent(username) : ''}:${password ? encodeURIComponent(password) : ''}@`;
     }
     url += `${host}:${port}`;
     return url;
