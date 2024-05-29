@@ -1,0 +1,119 @@
+{
+  "swagger": "2.0",
+  "components": {
+    "schemas": {
+      "PostEmailRequestBody": {
+        "type": "object",
+        "properties": {
+          "from": {
+            "description": "Email sender",
+            "type": "string"
+          },
+          "to": {
+            "description": "Email receiver",
+            "type": "string"
+          },
+          "body": {
+            "description": "Email message",
+            "type": "string"
+          }
+        },
+        "required": ["from", "to", "body"]
+      },
+      "EmailResponseBody": {
+        "type": "object",
+        "properties": {
+          "externalId": {
+            "type": "string"
+          },
+          "from": {
+            "description": "Email sender",
+            "type": "string"
+          },
+          "to": {
+            "description": "Email receiver",
+            "type": "string"
+          },
+          "body": {
+            "description": "Email message",
+            "type": "string"
+          },
+          "status": {
+            "description": "Email status: \"pending\" means in progress; \"error\" means that we had an error trying to send the email; \"sent\" means that the email has been sent successfully; \"draft\" is for future developments",
+            "type": "string",
+            "enum": ["pending", "error", "draft", "sent"]
+          },
+          "createdAt": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  },
+  "info": {
+    "title": "Email Service",
+    "description": "Email service for WoowUp Challenge",
+    "version": "1.0.0"
+  },
+  "paths": {
+    "/emails": {
+      "post": {
+        "operationId": "createUser",
+        "summary": "Send an email",
+        "description": "Send an email",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PostEmailRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Sending email process has been started",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/emails/{externalId}": {
+      "get": {
+        "parameters": [
+          {
+            "in": "path",
+            "name": "externalId",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64",
+              "minimum": 1
+            }
+          }
+        ],
+        "summary": "Get email info",
+        "description": "Get email info",
+        "responses": {
+          "200": {
+            "description": "Get email info",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/EmailResponseBody"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
