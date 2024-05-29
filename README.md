@@ -42,6 +42,10 @@ Copy the id retrieved and past it here:
 curl --location 'http://144.126.246.17:3000/emails/{{externalId}}'
 ```
 
+You can check the Swagger documentation in your local environment, but not in the server (it's not working there :pensive:). Check `http://localhost:3000/api-docs` for it.
+
+Disclaimer: Emails will be sent from the email setted for each email provider.
+
 You can check the stack and the process in the following diagram:
 
 ![image](https://github.com/sjardon/email-service/assets/71879650/50e923ea-1058-429b-9bd9-67fc8fdfea7f)
