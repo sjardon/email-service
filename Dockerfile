@@ -35,8 +35,6 @@ RUN npm install
 COPY --from=pruner /app/out/full/ .
 
 RUN turbo build --filter=${PROJECT}
-# RUN npm prune --production
-# RUN rm -rf ./**/*/src
 
 # Final image
 FROM alpine AS runner
