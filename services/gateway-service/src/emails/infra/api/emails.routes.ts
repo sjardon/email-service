@@ -8,7 +8,6 @@ export function getEmailRoutes(): Router {
 
   router.get('/emails/:externalId', getEmailController);
 
-  //TODO: Add validation middleware
   router.post(
     '/emails',
     validateMiddleware(emailsValidator),

@@ -1,81 +1,62 @@
-# Turborepo starter
+# WoowUp challenge
 
-This is an official starter Turborepo.
+WoowUp challenge repository. I hope you enjoy this code review!
 
-## Using this example
+## Introducción
 
-Run the following command:
+Tech stack (and my experience in each one):
 
-```sh
-npx create-turbo@latest
+1. Turborepo for monorepo management (low experience).
+2. NodeJs with Express framework (high experienc) for microservices (middle experience).
+3. Hexagonal architecture (middle experience)
+4. Mongo DB (middle experiencie).
+5. Redis DB (middle to high experience).
+6. Redis pub-sub (middle experience).
+7. Docker and Docker Compose for local deployment (middle experience).
+8. Github action for CI/CD (middle experience). Disclaimer: I had some issues trying the continuous deployment, finally I deployed all manually.
+
+## Local stack deployment
+
+1. Run in root folder and each service folder: `cp .env.example .env`.
+2. In `services/email-sender-service` there are some variables which will need your oun configuration: SENDGRID_API_KEY, SENDGRID_VERIFIED_SENDER, MAILGUN_API_KEY, MAILGUN_DOMAIN.
+3. Run `docker compose up`
+4. In order to test the services you can run: `npm run test`
+
+## Workflow
+
+In order to send and get an email you can run the following commands:
+
+```curl
+curl --location 'http://144.126.246.17:3000/emails' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "to": "sample@mail.com",
+    "from": "sample_from@mail.com",
+    "body": "Some important info"
+}'
 ```
 
-## What's inside?
+Copy the id retrieved and past it here: 
 
-This Turborepo includes the following packages/apps:
-
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```curl
+curl --location 'http://144.126.246.17:3000/emails/{{externalId}}'
 ```
 
-### Develop
+You can check the stack and the process in the following diagram:
 
-To develop all apps and packages, run the following command:
+![image]()
 
-```
-cd my-turborepo
-pnpm dev
-```
+## Disclaimers
 
-### Remote Caching
+Some important developments are pendings:
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+1. Error handling
+2. Add useful logs
+3. Improve abstraction in controllers, routes, and other infrastructure services.
+4. There are only one service tested: `CreateEmailService` from `email-sender-service`.
+5. Parse responses
+6. Some kind of security and throttling system.
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
+Some other development details could be missing due to lack of time.
 
-```
-cd my-turborepo
-npx turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-```
-npx turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Thanks for your time!
