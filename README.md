@@ -48,8 +48,7 @@ Disclaimer: Emails will be sent from the email setted for each email provider.
 
 You can check the stack and the process in the following diagram:
 
-![image](https://github.com/sjardon/email-service/assets/71879650/50e923ea-1058-429b-9bd9-67fc8fdfea7f)
-
+![image](https://github.com/sjardon/email-service/assets/71879650/c6b53b23-def3-4325-a0e8-5eaa090286a7)
 
 1. Client ask to the gateway by HTTP to send an email
 2. Gateway publish a message asking to email service to send an email
