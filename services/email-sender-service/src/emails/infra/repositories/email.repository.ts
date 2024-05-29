@@ -2,7 +2,6 @@ import { EmailEntity, EmailModel } from '../../domain/entities/email.entity';
 import { IEmailRepository } from '../../domain/repositories/email.repository';
 
 export class EmailRepository implements IEmailRepository {
-  // constructor(private readonly dbClient: MongoClient) {}
   async get(externalId: string): Promise<EmailEntity | null> {
     const foundEmail = await EmailModel.findOne({ externalId }).exec();
 

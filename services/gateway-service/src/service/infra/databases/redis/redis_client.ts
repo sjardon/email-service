@@ -1,6 +1,4 @@
 import * as redis from 'redis';
-// console.warn
-
 export class RedisClient {
   private client;
 

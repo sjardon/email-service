@@ -13,10 +13,6 @@ import {
 import { listenServiceSubscribers } from './service/infra/subscribers/service.subscribers';
 
 async function startApp() {
-  // start redis connection
-  // start listeners
-  // start routes
-
   const app = express();
 
   app.use(helmet());

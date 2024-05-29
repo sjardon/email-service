@@ -1,5 +1,3 @@
-// console.warn
-
 import mongoose from 'mongoose';
 
 export class MongoClient {

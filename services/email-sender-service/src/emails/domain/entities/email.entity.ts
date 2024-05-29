@@ -28,7 +28,6 @@ export class EmailEntity implements IEmailEntity {
   ) {}
 }
 
-// 2. Create a Schema corresponding to the document interface.
 const userSchema = new Schema<IEmailEntity>({
   externalId: { type: String, required: true },
   from: { type: String, required: true },

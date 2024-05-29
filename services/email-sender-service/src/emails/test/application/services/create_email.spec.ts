@@ -21,7 +21,6 @@ describe('Email', () => {
       let createEmailInput: CreateEmailInput;
 
       beforeAll(() => {
-        // arrange
         repository = new MockedEmailRepository();
 
         publisher = new MockedPublisher();
