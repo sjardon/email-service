@@ -44,7 +44,8 @@ curl --location 'http://144.126.246.17:3000/emails/{{externalId}}'
 
 You can check the stack and the process in the following diagram:
 
-![image](https://github.com/sjardon/email-service/assets/71879650/2d068e73-b2f6-4cdb-926d-6d12142f8ce0)
+![image](https://github.com/sjardon/email-service/assets/71879650/50e923ea-1058-429b-9bd9-67fc8fdfea7f)
+
 
 1. Client ask to the gateway by HTTP to send an email
 2. Gateway publish a message asking to email service to send an email
