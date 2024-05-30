@@ -28,7 +28,7 @@ export class EmailEntity implements IEmailEntity {
   ) {}
 }
 
-const userSchema = new Schema<IEmailEntity>({
+const emilSchema = new Schema<IEmailEntity>({
   externalId: { type: String, required: true },
   from: { type: String, required: true },
   to: { type: String, required: true },
@@ -37,4 +37,4 @@ const userSchema = new Schema<IEmailEntity>({
   status: { type: String, required: true },
 });
 
-export const EmailModel = model<IEmailEntity>('User', userSchema);
+export const EmailModel = model<IEmailEntity>('Email', emilSchema);

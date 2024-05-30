@@ -18,7 +18,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root123
-      MONGO_INITDB_DATABASE: email
+      MONGO_INITDB_DATABASE: emaildb
     volumes:
       - ./mongo-init.js:/docker-entrypoint-initdb.d/mongo-init.js:ro
       - es_mongodb:/data/db
@@ -41,7 +41,7 @@ services:
         - PROJECT=email-sender-service
     env_file: ./services/email-sender-service/.env
     ports:
-      - ${EMAIL_SENDER_PORT}:3000
+      - ${EMAIL_SENDER_PORT}:3001
     depends_on:
       - redis
       - mongo
